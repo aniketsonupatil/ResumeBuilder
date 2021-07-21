@@ -1,0 +1,70 @@
+<div class="container my-3">
+<div class="container d-flex justify-content-between">
+<h1 class="align-middle flex-fill">Achivements</h1> 
+<a class="btn" href="{% url 'resForms:AchievementMake' %}"><i class="fa fa-plus fa-2x"></i></a>
+</div>
+<div class="container ">  
+{% if achievements %}   
+    <div class="container my-3">
+    <h2> Scholastic Achivements:</h2>  
+    <div class="p-3 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 container"> 
+    {% for achievement in achievements %}
+    {% if achievement.AchiveType.pk == 1%}
+            <div class="col">
+            <div class="card h-100">
+            <div class="card-header d-flex justify-content-between">
+                <span class="flex-fill d-flex ">
+                    <input class="form-check-input m-1" type='checkbox' name='achievementIDs' value='{{achievement.id}}'>
+                </span>
+                <span class="flex-fill d-flex justify-content-end">
+                    <a class="btn" href="{% url 'resForms:AchievementUpdate' achievement.id %}"><i class="far fa-edit fa-lg"></i></a>
+                    <a class="btn" href="{% url 'resForms:AchievementDelete' achievement.id %}"><i class="far fa-trash-alt fa-lg"></i></a>
+                </span>
+            </div>
+                <div class="card-body">
+                    <p class="card-text">
+                    {{achievement.AchivementName}}
+                    </p>
+                </div>
+            </div>
+            </div>
+     {%endif%}            
+    {% endfor %}   
+    </div>
+    </div>
+
+    
+    <div class="container my-3">
+    <h2> Extracurricular Achivements:</h2>  
+    <div class=" p-3 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 container"> 
+    {% for achievement in achievements %}
+    {% if achievement.AchiveType.pk == 2%}
+            <div class="col">
+            <div class="card h-100">
+            <div class="card-header d-flex justify-content-between">
+                <span class="flex-fill d-flex ">
+                    <input class="form-check-input m-1" type='checkbox' name='achievementIDs' value='{{achievement.id}}'>
+                </span>
+                <span class="flex-fill d-flex justify-content-end">
+                    <a class="btn" href="{% url 'resForms:AchievementUpdate' achievement.id %}"><i class="far fa-edit fa-lg"></i></a>
+                    <a class="btn" href="{% url 'resForms:AchievementDelete' achievement.id %}"><i class="far fa-trash-alt fa-lg"></i></a>
+                </span>
+            </div>
+                <div class="card-body">
+                    <p class="card-text">
+                    {{achievement.AchivementName}}
+                    </p>
+                </div>
+            </div>
+            </div>
+    {%endif%}     
+    {% endfor %}   
+    </div>
+    </div>
+
+
+{% else %}
+    <p>No Achivements are available.</p>
+{% endif %}
+</div>
+</div>

@@ -1,0 +1,23 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+<div class="container">
+{% if achievements%}
+<h1> List of All achievements</h1>
+{% load crispy_forms_tags %}
+    <form  method="post">
+        {% csrf_token %}
+        <h1> TEST HEADING</h1>
+             <ul class='list-group'>
+                 {% for achievement in achievements%}
+                    <li class='list-group-item align-middle'> <input class="form-check-input m-1" type='checkbox' name='achievementIDs' value='{{achievement.id}}'> {{achievement.AchivementName}}</li>
+                {% endfor %}
+            </ul>
+
+            <input type="submit" value="Submit">
+    </form>
+ {% endif %}
+</div>
+
+
+{% endblock %}

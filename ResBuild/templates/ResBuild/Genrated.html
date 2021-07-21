@@ -1,0 +1,191 @@
+{% extends "base_bootstrap.html" %}
+{% block head %} 
+<meta charset="utf-8">
+    <style type="text/css">
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+     </style>
+{% endblock %}
+{% load static %}
+{% block content %}
+<div class='container'>
+<h1 class="text-center"> Genrated Resume</h1>
+    <div class="container">
+        <table class="table table-borderless">
+            <tr>
+                <td rowspan=4 class="col-3">  <img src="{% static 'imgs/iitb_logo.png' %}" alt="IITB LOGO" class=" col-10 mx-auto d-block"></td>
+                <td colspan=2 class="col-6 fw-bold">ANIKET A PATIL</td>
+                <td class="col-3 fw-bold">19D180007</td>
+            </tr>
+            <tr>
+                <td colspan=2 class="col-6 fw-bold">Environmental Science and Engineering</td>
+                <td class="col-3 fw-bold">UG Second Year</td>
+            </tr>
+            <tr>
+                <td colspan=2 class="col-6 fw-bold">Indian Institute of Technology Bombay</td>
+                <td class="col-3 fw-bold">Male</td>
+            </tr>
+            <tr>
+                <td colspan=2 class="col-6"></td>
+                <td class="col-3 fw-bold"> DOB: 16-Oct-1999</td>
+            </tr>
+        </table>
+        <table class="table mb-5">
+            <thead>
+                <tr class=" border-3 border-dark border-start-0 border-end-0 ">
+                <th scope="col" class="col-2"> Examination</th>
+                <th scope="col" class="col-3">University</th>
+                <th scope="col" class="col-3">Institute</th>
+                <th scope="col" class="col-2">Year</th>
+                <th scope="col" class="col-2">CPI</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class=" border-2 border-dark border-start-0 border-end-0 ">
+                <td class="col-2">Graduation</td>
+                <td class="col-3">IIT Bombay</td>
+                <td class="col-3">IIT Bombay</td>
+                <td class="col-2">2021</td>
+                <td class="col-2">8.71</td>
+                </tr>
+        </table>
+    </div>
+    <div class="container my-2">
+        <div class="row">
+            <h1 class="text-primary col-auto">Scholastic Achievements </h1> <hr class="col mt-5 text-primary">
+        </div>
+        <div>
+        {% if achievements %}
+            <ul class="list-group list-group-flush">
+                {% for achievement in achievements%}
+                {% if achievement.AchiveType.pk == 1%}
+                <li class="d-flex justify-content-between list-group-item"> <span class="flex-fill">{{achievement.AchivementName}} </span>  <span>({{achievement.AchivementPeriod}})</span></li>
+                {% endif %}            
+                {% endfor %} 
+            </ul>
+            
+        {% endif %} 
+        </div>
+    </div>
+    <div class="container my-2">
+        <div class="row">
+            <h1 class="text-primary col-auto">Extracurricular Achievements </h1> <hr class="col mt-5 text-primary">
+        </div>
+        <div>
+        {% if achievements %}
+            <ul class="list-group list-group-flush">
+                {% for achievement in achievements%}
+                {% if achievement.AchiveType.pk == 1%}
+                <li class="d-flex justify-content-between list-group-item"> <span class="flex-fill">{{achievement.AchivementName}} </span>  <span>({{achievement.AchivementPeriod}}) </span></li>
+                {% endif %}            
+                {% endfor %} 
+            </ul>
+            
+        {% endif %} 
+        </div>
+    </div>
+    <div class="container my-2">
+        <div class="row">
+            <h1 class="text-primary col-auto">Key Projects Undertaken </h1> <hr class="col mt-5 text-primary">
+        </div>
+        <div>
+        {% if projects %}
+        {% for project in projects%}
+        <div class="container py-2">
+            <div class="d-flex justify-content-between ">
+                <span class="flex-fill">
+                    <h2 class="fs-1">{{project.ProjectName}}</h2>
+                    <div class="list-inline fst-italic">
+                            <h5 class="list-inline-item">{{project.Tag1}}</h5>
+                            <h5 class="list-inline-item">{{project.Tag2}}</h5>                    
+                    </div>
+                </span>
+                <span class="fs-4">
+                ({{project.ProjectPeriod}})
+                </span>
+            </div>
+            <div class="ps-4">
+            {{project.ProjectDesc}}
+            </div>
+        </div>
+         {% endfor%}   
+        {% endif %} 
+        </div>
+    </div>
+    <div class="container my-2">
+        <div class="row">
+            <h1 class="text-primary col-auto">Positions of Responsibility </h1> <hr class="col mt-5 text-primary">
+        </div>
+        <div>
+        {% if pors %}
+        {% for por in pors%}
+        <div class="container py-2">
+            <div class="d-flex justify-content-between ">
+                <span class="flex-fill">
+                    <h2 class="fs-1">{{por.PorName}} </h2>
+                    <div class="list-inline fst-italic">
+                            <h5 class="list-inline-item">{{por.Tag1}}</h5>                    
+                    </div>
+                </span>
+                <span class="fs-4">
+                ({{por.PorPeriod}})
+                </span>
+            </div>
+            <div class="ps-4">
+            {{por.PorDesc}}
+            </div>
+        </div>
+         {% endfor%}   
+        {% endif %} 
+        </div>
+    </div>
+    <div class="container my-2">
+        <div class="row">
+            <h1 class="text-primary col-auto">Technical Skills </h1> <hr class="col mt-5 text-primary">
+        </div>
+        <div>
+        {% if skills %}
+            <table class="table table-borderless ">
+            {% for type in skilltypes%}
+                <tr>
+                    <td class="col-3 fw-bold fs-5">{{type.SkillType}}</td>
+                    <td class="col-9 fs-5">
+                        {% for skill in skills %}
+                        {% if skill.SkillType.pk == type.pk %}
+                        {{skill.SkillName}},
+                        {% endif %}
+                        {% endfor%}
+                    </td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+        </div>
+    </div>
+    <div class="container my-2">
+        <div class="row">
+            <h1 class="text-primary col-auto">Courses Undertaken </h1> <hr class="col mt-5 text-primary">
+        </div>
+        <div>
+        {% if skills %}
+            <table class="table table-borderless ">
+            {% for type in coursetypes %}
+                <tr>
+                    <td class="col-3 fw-bold fs-5">{{type.CourseType}}</td>
+                    <td class="col-9 fs-5">
+                        {% for course in courses %}
+                        {% if course.CourseType.pk == type.pk %}
+                        {{course.CourseName}},
+                        {% endif %}
+                        {% endfor%}
+                    </td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+        </div>
+    </div>     
+</div>
+{% endblock %}

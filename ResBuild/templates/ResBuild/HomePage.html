@@ -1,0 +1,32 @@
+{% extends "base_bootstrap.html" %}
+{% block head %} 
+<meta charset="utf-8">
+    <style type="text/css">
+        #header{
+            font-family: 'Festive', cursive;
+           
+        }
+        #headwrap{
+            border-radius: 0 0 2.5rem 2.5rem;
+        }
+     </style>
+{% endblock %}
+{% block header%}
+    <div class=""> {% include 'ResBuild/header.html' %} </div>
+{% endblock%}
+{% block content %}
+<div class='container mb-4'>
+    <div class="container">
+        <form action="" method="post">
+        {% csrf_token %}
+            {% include 'ResBuild/achievements.html' %}
+            {% include 'ResBuild/courses.html'%}
+            {% include 'ResBuild/projects.html' %}
+            {% include 'ResBuild/pors.html' %}
+            {% include 'ResBuild/skills.html' %}
+
+            <input type="submit" name="submit" value="Genrate Resume" class="btn btn-primary"/>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base_bootstrap.html" %}
+{% block head %} 
+
+{% endblock %}
+<meta charset="utf-8">
+    <style type="text/css">
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+     </style>
+{% block content %}
+<div class="container">
+{% if achievements%}
+<h1> List of Selected achievements</h1>
+<ul class='list-group'>
+{% for achievement in achievements%}
+<li class='list-group-item'>{{achievement.AchivementName}} ({{achievement.AchivementPeriod}})</li>
+{% endfor %}
+</ul>
+ {% endif %}
+</div>
+<p>
+{{data}}
+</p>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+<div class="container my-3">  
+{% if projects %}
+<div class="container d-flex justify-content-between">
+    <h1 class="align-middle flex-fill"> Projects </h1>
+    <a class="btn" href="{% url 'resForms:ProjectMake' %}"><i class="fa fa-plus fa-2x"></i></a>
+</div>
+    <div class="container p-4">  
+    <div class="row row-cols-1 row-cols-md-2 g-4"> 
+    {% for project in projects %}
+            <div class="col">
+            <div class="card h-100">
+            <div class="card-header d-flex justify-content-between">
+                 <span class="d-flex">
+                    <input class="form-check-input m-1" type='checkbox' name='projectIDs' value='{{project.id}}'>
+                 </span>
+                <h3 class="card-tittle flex-fill">{{project.ProjectName}} ({{project.ProjectPeriod}})</h3> 
+                <span class="flex-fill d-flex justify-content-end">
+                    <a class="btn" href="{% url 'resForms:ProjectUpdate' project.id %}"><i class="far fa-edit fa-lg"></i></a>
+                    <a class="btn" href="{% url 'resForms:ProjectDelete' project.id %}"><i class="far fa-trash-alt fa-lg"></i></a>
+                </span>                
+            </div>
+                <div class="card-body">            
+                    <div class="list-inline">
+                        <h5 class="list-inline-item">{{project.Tag1}}</h5>
+                        <h5 class="list-inline-item">{{project.Tag2}}</h5>                    
+                    </div>
+                    <p class="card-text">
+                    {{project.ProjectDesc}}
+                    </p>
+                </div>
+            </div>
+            </div>     
+    {% endfor %}   
+    </div>
+    </div>
+{% endif %}
+</div>

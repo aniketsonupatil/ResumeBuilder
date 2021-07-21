@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block title %}{{ settings.APP_NAME }}{% endblock %}</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/v4-shims.css">
+{% block head %} {% endblock %}
+</head>
+<body>
+<div class="container">
+{% block content %}
+{% endblock %}
+</div>
+</body>
+</html>
