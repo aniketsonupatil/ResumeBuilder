@@ -141,7 +141,7 @@ class Register(View):
 
         user = form.save()
         login(request,user)
-        return redirect('resBuild:GenTest')
+        return redirect('resBuild:Index')
 
 
         
